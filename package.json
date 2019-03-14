@@ -7,9 +7,11 @@
     "@types/node": "11.10.4",
     "@types/react": "16.8.6",
     "@types/react-dom": "16.8.2",
+    "@types/styled-components": "^4.1.12",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5",
+    "styled-components": "^4.1.3",
     "typescript": "3.3.3333"
   },
   "scripts": {
@@ -30,12 +32,12 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "prettier": "^1.16.4",
-    "@storybook/react": "^5.0.0",
     "@storybook/addon-actions": "^5.0.0",
     "@storybook/addon-links": "^5.0.0",
     "@storybook/addons": "^5.0.0",
+    "@storybook/react": "^5.0.0",
     "babel-core": "^6.26.3",
-    "babel-runtime": "^6.26.0"
+    "babel-runtime": "^6.26.0",
+    "prettier": "^1.16.4"
   }
 }

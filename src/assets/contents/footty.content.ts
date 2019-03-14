@@ -1,4 +1,4 @@
-import { leagueContents } from './leagueContents';
+import { leagueContents } from './league.content';
 
 export const foottyContents = {
   en: {
