@@ -1,6 +1,11 @@
 import { leagueContents } from './league.content';
 
-export const foottyContents = {
+export interface FoottyContents {
+  en: object;
+  ko: object;
+}
+
+export const foottyContents: FoottyContents = {
   en: {
     league: leagueContents.en,
   },

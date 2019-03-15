@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
+import { LocaleProvider } from '../contexts/locale.context';
 import HomePage from './pages/HomePage';
 
 const GlobalStyle = createGlobalStyle`
@@ -25,11 +26,22 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class App extends React.Component {
+  hl: string | null = null;
+
+  getHostLanguage = (locationSearch: string): string | null => {
+    const searchParams = new URLSearchParams(locationSearch);
+    this.hl = this.hl || searchParams.get('hl');
+
+    return this.hl;
+  };
+
   render() {
     return (
       <>
         <GlobalStyle />
-        <HomePage />
+        <LocaleProvider hl={this.getHostLanguage(location.search)}>
+          <HomePage />
+        </LocaleProvider>
       </>
     );
   }
