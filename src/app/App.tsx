@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { createGlobalStyle } from 'styled-components';
 
+import HomePage from './pages/HomePage';
+
 const GlobalStyle = createGlobalStyle`
   html {
     height: 100%;
@@ -27,7 +29,7 @@ class App extends React.Component {
     return (
       <>
         <GlobalStyle />
-        <div className='App'>App</div>
+        <HomePage />
       </>
     );
   }
