@@ -1,8 +1,8 @@
-import BLBadgeGrey from '../images/BL-badge-grey.png';
+import BLBadgeGrey from '../images/BL-badge-gray.png';
 import BLBadge from '../images/BL-badge.png';
-import LLBadgeGrey from '../images/LL-badge-grey.png';
+import LLBadgeGrey from '../images/LL-badge-gray.png';
 import LLBadge from '../images/LL-badge.png';
-import PLBadgeGrey from '../images/PL-badge-grey.png';
+import PLBadgeGrey from '../images/PL-badge-gray.png';
 import PLBadge from '../images/PL-badge.png';
 import SABadge from '../images/SA-badge.png';
 
