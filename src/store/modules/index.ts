@@ -1,6 +1,6 @@
 import { AnyAction, combineReducers, Reducer } from 'redux';
 
-import { CoreState } from '../models/core/core.model';
+import { CoreState } from '../models/core.model';
 import { reducer as coreReducer } from './core/core.module';
 
 export interface RootState {

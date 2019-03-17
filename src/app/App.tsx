@@ -35,6 +35,8 @@ class App extends React.Component {
     return this.hl;
   };
 
+  componentDidMount() {}
+
   render() {
     return (
       <>

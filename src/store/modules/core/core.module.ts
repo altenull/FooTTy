@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 
-import { CoreState } from '../../models/core/core.model';
+import { CoreState } from '../../models/core.model';
 
 const RESET_CORE = '@@core/RESET_CORE';
 
