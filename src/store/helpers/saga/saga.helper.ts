@@ -1,4 +1,4 @@
-import { AsyncActionsType, SagaActionType } from '../models/saga.model';
+import { AsyncActionsType, SagaActionType } from '../../models/saga/saga.model';
 
 export const createAsyncActionsType = (actionName: string): AsyncActionsType => {
   return {
