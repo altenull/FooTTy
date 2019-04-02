@@ -1,3 +1,8 @@
+import { createHashHistory } from 'history';
+
 import store from './configureStore';
 
-export default store();
+const history = createHashHistory();
+const initialState = (window as any).initialReduxState;
+
+export default store(history, initialState);

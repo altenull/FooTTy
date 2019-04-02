@@ -4,9 +4,11 @@ import { SocialUrls } from '../shared/shared.model';
 
 export interface FoottyAPILeagueState {
   leagueDetails: { [leagueId: string]: ObjectizedLeagueDetails } | null;
-  isGetLeagueDetailsLoading: boolean;
-  isGetLeagueDetailsLoaded: boolean;
-  getLeagueDetailsError: string | null;
+  leagueDetailsAPIStatus: {
+    isGetLeagueDetailsLoading: boolean;
+    isGetLeagueDetailsLoaded: boolean;
+    getLeagueDetailsError: string | null;
+  };
 }
 
 // Redux-Saga

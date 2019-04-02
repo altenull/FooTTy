@@ -1,6 +1,6 @@
 import { AsyncActionsType, SagaActionType } from '../../models/saga/saga.model';
 
-export const createAsyncActionsType = (actionName: string): AsyncActionsType => {
+const createAsyncActionsType = (actionName: string): AsyncActionsType => {
   return {
     INDEX: `${actionName}_INDEX`,
     REQUEST: `${actionName}_REQUEST`,
@@ -9,17 +9,21 @@ export const createAsyncActionsType = (actionName: string): AsyncActionsType => 
   };
 };
 
-export const createSagaAction = (actionType: string) => {
+const createSagaAction = (actionType: string) => {
   return (payload?: any): SagaActionType => ({
     type: actionType,
     payload,
   });
 };
 
-export const createAsyncAction = (asyncActionType: AsyncActionsType) => {
+const createAsyncActions = (asyncActionType: AsyncActionsType) => {
   const asyncAction: any = createSagaAction(asyncActionType.INDEX);
   asyncAction.request = createSagaAction(asyncActionType.REQUEST);
   asyncAction.success = createSagaAction(asyncActionType.SUCCESS);
   asyncAction.fail = createSagaAction(asyncActionType.FAIL);
   return asyncAction;
 };
+
+const sagaHelper = { createAsyncActionsType, createSagaAction, createAsyncActions };
+
+export default sagaHelper;

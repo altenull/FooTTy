@@ -10,9 +10,9 @@ class FoottyAPILeagueService {
 
     return axios
       .get(url)
-      .then((response) => response.data)
-      .catch((error) => console.error(error));
+      .then((response) => ({ response }))
+      .catch((error) => ({ error }));
   };
 }
 
-export default new FoottyAPILeagueService();
+export default FoottyAPILeagueService;
