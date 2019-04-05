@@ -1,8 +1,8 @@
 import * as React from 'react';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
 import { LocaleProvider } from '../contexts/locale.context';
-import HomePage from './pages/HomePage';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -25,6 +25,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+
 class App extends React.Component {
   hl: string | null = null;
 
@@ -41,9 +43,20 @@ class App extends React.Component {
     return (
       <>
         <GlobalStyle />
-        <LocaleProvider hl={this.getHostLanguage(location.search)}>
-          <HomePage />
-        </LocaleProvider>
+        <HashRouter>
+          <Switch>
+            <Route
+              path={'/'}
+              render={() => (
+                <React.Suspense fallback={<div>Loading...</div>}>
+                  <LocaleProvider hl={this.getHostLanguage(location.search)}>
+                    <Route path={'/'} component={HomePage} exact={true} />
+                  </LocaleProvider>
+                </React.Suspense>
+              )}
+            />
+          </Switch>
+        </HashRouter>
       </>
     );
   }
