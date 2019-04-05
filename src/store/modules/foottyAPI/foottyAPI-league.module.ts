@@ -7,6 +7,7 @@ import { FoottyAPILeagueState } from '../../models/foottyAPI/foottyAPI-league.st
 const RESET_FOOTTY_API_LEAGUE = '@@foottyAPI-league/RESET_FOOTTY_API_LEAGUE';
 export const GET_LEAGUE_DETAILS = sagaHelper.createAsyncActionsType('@@foottyAPI-league/GET_LEAGUE_DETAILS');
 export const GET_ALL_TEAMS_IN_LEAGUE = sagaHelper.createAsyncActionsType('@@foottyAPI-league/GET_ALL_TEAMS_IN_LEAGUE');
+export const GET_LEAGUE_SEASONS = sagaHelper.createAsyncActionsType('@@foottyAPI-league/GET_LEAGUE_SEASONS');
 
 export const actionCreators = {
   resetFoottyAPILeague: createAction(RESET_FOOTTY_API_LEAGUE),
@@ -18,6 +19,10 @@ export const actionCreators = {
   getAllTeamsInLeagueRequest: createAction(GET_ALL_TEAMS_IN_LEAGUE.REQUEST),
   getAllTeamsInLeagueComplete: createAction(GET_ALL_TEAMS_IN_LEAGUE.SUCCESS),
   getAllTeamsInLeagueFail: createAction(GET_ALL_TEAMS_IN_LEAGUE.FAIL),
+  getLeagueSeasons: createAction(GET_LEAGUE_SEASONS.INDEX),
+  getLeagueSeasonsRequest: createAction(GET_LEAGUE_SEASONS.REQUEST),
+  getLeagueSeasonsComplete: createAction(GET_LEAGUE_SEASONS.SUCCESS),
+  getLeagueSeasonsFail: createAction(GET_LEAGUE_SEASONS.FAIL),
 };
 
 export const initialState: FoottyAPILeagueState = {
@@ -32,6 +37,12 @@ export const initialState: FoottyAPILeagueState = {
     isGetAllTeamsInLeagueLoading: false,
     isGetAllTeamsInLeagueLoaded: false,
     getAllTeamsInLeagueError: null,
+  },
+  seasons: [],
+  seasonsAPIStatus: {
+    isGetSeasonsLoading: false,
+    isGetSeasonsLoaded: false,
+    getSeasonsError: null,
   },
 };
 
@@ -86,6 +97,31 @@ export const reducer = handleActions(
           draft.allTeamsInLeagueAPIStatus.getAllTeamsInLeagueError = action.payload as any;
         }
         draft.allTeamsInLeagueAPIStatus.isGetAllTeamsInLeagueLoading = false;
+      });
+    },
+    [GET_LEAGUE_SEASONS.REQUEST]: (state: FoottyAPILeagueState) => {
+      return produce(state, (draft) => {
+        draft.seasons = [];
+        draft.seasonsAPIStatus.isGetSeasonsLoading = true;
+        draft.seasonsAPIStatus.isGetSeasonsLoaded = false;
+        draft.seasonsAPIStatus.getSeasonsError = null;
+      });
+    },
+    [GET_LEAGUE_SEASONS.SUCCESS]: (state: FoottyAPILeagueState, action) => {
+      return produce(state, (draft) => {
+        if (action.payload != null) {
+          draft.seasons = action.payload as any;
+        }
+        draft.seasonsAPIStatus.isGetSeasonsLoading = false;
+        draft.seasonsAPIStatus.isGetSeasonsLoaded = true;
+      });
+    },
+    [GET_LEAGUE_SEASONS.FAIL]: (state: FoottyAPILeagueState, action) => {
+      return produce(state, (draft) => {
+        if (action.payload != null) {
+          draft.seasonsAPIStatus.getSeasonsError = action.payload as any;
+        }
+        draft.seasonsAPIStatus.isGetSeasonsLoading = false;
       });
     },
   },

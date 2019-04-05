@@ -1,7 +1,9 @@
 import {
   GetAllTeamsInLeagueResponse,
   GetLeagueDetailsResponse,
+  GetLeagueSeasonsResponse,
   LeagueDetails,
+  LeagueSeason,
   ObjectizedLeagueDetails,
   ObjectizedTeamInLeague,
   TeamInLeague,
@@ -64,6 +66,14 @@ const getAllTeamsInLeague = (
   return allTeamsInLeague;
 };
 
-const foottyAPIHelper = { getLeagueDetails, getAllTeamsInLeague };
+const getLeagueSeasons = (getLeagueSeasonsResponse: GetLeagueSeasonsResponse): string[] => {
+  const leagueSeasons = getLeagueSeasonsResponse.seasons.reduce((acc: string[], season: LeagueSeason) => {
+    return [...acc, season.strSeason];
+  }, []);
+
+  return leagueSeasons.reverse();
+};
+
+const foottyAPIHelper = { getLeagueDetails, getAllTeamsInLeague, getLeagueSeasons };
 
 export default foottyAPIHelper;

@@ -1,6 +1,7 @@
 import {
   GetAllTeamsInLeaguePayload,
   GetLeagueDetailsPayload,
+  GetLeagueSeasonsPayload,
 } from '../../../services/models/foottyAPI-leagure.service.model';
 import { ActionType } from '../saga/saga.model';
 import { SocialUrls } from '../shared/shared.model';
@@ -18,6 +19,12 @@ export interface FoottyAPILeagueState {
     isGetAllTeamsInLeagueLoaded: boolean;
     getAllTeamsInLeagueError: string | null;
   };
+  seasons: string[];
+  seasonsAPIStatus: {
+    isGetSeasonsLoading: boolean;
+    isGetSeasonsLoaded: boolean;
+    getSeasonsError: string | null;
+  };
 }
 
 // Redux-Saga
@@ -26,6 +33,9 @@ export interface GetLeagueDetailsAction extends ActionType {
 }
 export interface GetAllTeamsInLeagueAction extends ActionType {
   payload: GetAllTeamsInLeaguePayload;
+}
+export interface GetLeagueSeasonsAction extends ActionType {
+  payload: GetLeagueSeasonsPayload;
 }
 
 export interface LeagueDetails {
