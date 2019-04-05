@@ -5,3 +5,14 @@
 > This service is up in https://footty.netlify.com **(Temporary domain)**
 
 **_Work In Progress(WIP)_**
+
+## Project Stack
+
+- React
+- React-Router
+- Redux
+- Redux-Saga
+- Typescript
+- Styled-components
+- Storybook
+- Prettier
