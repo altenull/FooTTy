@@ -31,7 +31,7 @@ class HomePage extends React.Component<Props> {
     });
 
     const left: React.ReactNode = <RevealText />;
-    const right = <div>{leagueSelectors}</div>;
+    const right: React.ReactNode = <div>{leagueSelectors}</div>;
 
     return (
       <PageTemplate>

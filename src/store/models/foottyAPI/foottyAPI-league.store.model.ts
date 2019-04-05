@@ -1,4 +1,7 @@
-import { GetLeagueDetailsPayload } from '../../../services/models/foottyAPI-leagure.service.model';
+import {
+  GetAllTeamsInLeaguePayload,
+  GetLeagueDetailsPayload,
+} from '../../../services/models/foottyAPI-leagure.service.model';
 import { ActionType } from '../saga/saga.model';
 import { SocialUrls } from '../shared/shared.model';
 
@@ -9,11 +12,20 @@ export interface FoottyAPILeagueState {
     isGetLeagueDetailsLoaded: boolean;
     getLeagueDetailsError: string | null;
   };
+  allTeamsInLeague: { [teamId: string]: ObjectizedTeamInLeague } | null;
+  allTeamsInLeagueAPIStatus: {
+    isGetAllTeamsInLeagueLoading: boolean;
+    isGetAllTeamsInLeagueLoaded: boolean;
+    getAllTeamsInLeagueError: string | null;
+  };
 }
 
 // Redux-Saga
 export interface GetLeagueDetailsAction extends ActionType {
   payload: GetLeagueDetailsPayload;
+}
+export interface GetAllTeamsInLeagueAction extends ActionType {
+  payload: GetAllTeamsInLeaguePayload;
 }
 
 export interface LeagueDetails {

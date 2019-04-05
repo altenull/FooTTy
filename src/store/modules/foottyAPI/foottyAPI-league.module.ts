@@ -6,6 +6,7 @@ import { FoottyAPILeagueState } from '../../models/foottyAPI/foottyAPI-league.st
 
 const RESET_FOOTTY_API_LEAGUE = '@@foottyAPI-league/RESET_FOOTTY_API_LEAGUE';
 export const GET_LEAGUE_DETAILS = sagaHelper.createAsyncActionsType('@@foottyAPI-league/GET_LEAGUE_DETAILS');
+export const GET_ALL_TEAMS_IN_LEAGUE = sagaHelper.createAsyncActionsType('@@foottyAPI-league/GET_ALL_TEAMS_IN_LEAGUE');
 
 export const actionCreators = {
   resetFoottyAPILeague: createAction(RESET_FOOTTY_API_LEAGUE),
@@ -13,6 +14,10 @@ export const actionCreators = {
   getLeagueDetailsRequest: createAction(GET_LEAGUE_DETAILS.REQUEST),
   getLeagueDetailsComplete: createAction(GET_LEAGUE_DETAILS.SUCCESS),
   getLeagueDetailsFail: createAction(GET_LEAGUE_DETAILS.FAIL),
+  getAllTeamsInLeague: createAction(GET_ALL_TEAMS_IN_LEAGUE.INDEX),
+  getAllTeamsInLeagueRequest: createAction(GET_ALL_TEAMS_IN_LEAGUE.REQUEST),
+  getAllTeamsInLeagueComplete: createAction(GET_ALL_TEAMS_IN_LEAGUE.SUCCESS),
+  getAllTeamsInLeagueFail: createAction(GET_ALL_TEAMS_IN_LEAGUE.FAIL),
 };
 
 export const initialState: FoottyAPILeagueState = {
@@ -21,6 +26,12 @@ export const initialState: FoottyAPILeagueState = {
     isGetLeagueDetailsLoading: false,
     isGetLeagueDetailsLoaded: false,
     getLeagueDetailsError: null,
+  },
+  allTeamsInLeague: null,
+  allTeamsInLeagueAPIStatus: {
+    isGetAllTeamsInLeagueLoading: false,
+    isGetAllTeamsInLeagueLoaded: false,
+    getAllTeamsInLeagueError: null,
   },
 };
 
@@ -50,6 +61,31 @@ export const reducer = handleActions(
           draft.leagueDetailsAPIStatus.getLeagueDetailsError = action.payload as any;
         }
         draft.leagueDetailsAPIStatus.isGetLeagueDetailsLoading = false;
+      });
+    },
+    [GET_ALL_TEAMS_IN_LEAGUE.REQUEST]: (state: FoottyAPILeagueState) => {
+      return produce(state, (draft) => {
+        draft.allTeamsInLeague = null;
+        draft.allTeamsInLeagueAPIStatus.isGetAllTeamsInLeagueLoading = true;
+        draft.allTeamsInLeagueAPIStatus.isGetAllTeamsInLeagueLoaded = false;
+        draft.allTeamsInLeagueAPIStatus.getAllTeamsInLeagueError = null;
+      });
+    },
+    [GET_ALL_TEAMS_IN_LEAGUE.SUCCESS]: (state: FoottyAPILeagueState, action) => {
+      return produce(state, (draft) => {
+        if (action.payload != null) {
+          draft.allTeamsInLeague = action.payload as any;
+        }
+        draft.allTeamsInLeagueAPIStatus.isGetAllTeamsInLeagueLoading = false;
+        draft.allTeamsInLeagueAPIStatus.isGetAllTeamsInLeagueLoaded = true;
+      });
+    },
+    [GET_ALL_TEAMS_IN_LEAGUE.FAIL]: (state: FoottyAPILeagueState, action) => {
+      return produce(state, (draft) => {
+        if (action.payload != null) {
+          draft.allTeamsInLeagueAPIStatus.getAllTeamsInLeagueError = action.payload as any;
+        }
+        draft.allTeamsInLeagueAPIStatus.isGetAllTeamsInLeagueLoading = false;
       });
     },
   },

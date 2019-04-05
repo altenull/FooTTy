@@ -1,10 +1,13 @@
 import {
+  GetAllTeamsInLeagueResponse,
   GetLeagueDetailsResponse,
   LeagueDetails,
   ObjectizedLeagueDetails,
+  ObjectizedTeamInLeague,
+  TeamInLeague,
 } from '../../models/foottyAPI/foottyAPI-league.store.model';
 
-export const getLeagueDeatils = (
+const getLeagueDetails = (
   getLeagueDetailsResponse: GetLeagueDetailsResponse
 ): { [leagueId: string]: ObjectizedLeagueDetails } => {
   const leagueDetails: { [leagueId: string]: ObjectizedLeagueDetails } = getLeagueDetailsResponse.leagues.reduce(
@@ -32,6 +35,35 @@ export const getLeagueDeatils = (
   return leagueDetails;
 };
 
-const foottyAPIHelper = { getLeagueDeatils };
+const getAllTeamsInLeague = (
+  getAllTeamsInLeagueResponse: GetAllTeamsInLeagueResponse
+): { [teamId: string]: ObjectizedTeamInLeague } => {
+  const allTeamsInLeague: {
+    [teamId: string]: ObjectizedTeamInLeague;
+  } = getAllTeamsInLeagueResponse.teams.reduce(
+    (acc: { [teamId: string]: ObjectizedTeamInLeague }, team: TeamInLeague) => {
+      return {
+        ...acc,
+        [team.idTeam]: {
+          formedYear: team.intFormedYear ? team.intFormedYear : null,
+          stadiumCapacity: team.intStadiumCapacity ? team.intStadiumCapacity : null,
+          badgeUrl: team.strTeamBadge ? team.strTeamBadge : null,
+          socialUrls: {
+            websiteUrl: team.strWebsite ? team.strWebsite : null,
+            facebookUrl: team.strFacebook ? team.strFacebook : null,
+            twitterUrl: team.strTwitter ? team.strTwitter : null,
+            instagramUrl: team.strInstagram ? team.strInstagram : null,
+            youtubeUrl: team.strYoutube ? team.strYoutube : null,
+          },
+        },
+      };
+    },
+    {}
+  );
+
+  return allTeamsInLeague;
+};
+
+const foottyAPIHelper = { getLeagueDetails, getAllTeamsInLeague };
 
 export default foottyAPIHelper;

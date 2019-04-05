@@ -27,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const HomePage = React.lazy(() => import('./pages/HomePage'));
+const LeaguePage = React.lazy(() => import('./pages/LeaguePage'));
 
 class App extends React.Component {
   hl: string | null = null;
@@ -52,6 +53,7 @@ class App extends React.Component {
                 <React.Suspense fallback={<div>Loading...</div>}>
                   <LocaleProvider hl={this.getHostLanguage(location.search)}>
                     <Route path={'/'} component={HomePage} exact={true} />
+                    <Route path={'/:league'} component={LeaguePage} exact={true} />
                   </LocaleProvider>
                 </React.Suspense>
               )}
