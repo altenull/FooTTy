@@ -15,7 +15,7 @@ export const LocaleProvider = (props: LocaleProviderProps) => {
   return <LocaleContext.Provider value={value}>{props.children}</LocaleContext.Provider>;
 };
 
-export const withLocale = (Component: React.ComponentClass) => (props: any) => {
+export const withLocale = (Component: React.ComponentClass<any>) => (props: any) => {
   return (
     <LocaleContext.Consumer>
       {(value) => {
