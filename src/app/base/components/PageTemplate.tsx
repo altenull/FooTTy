@@ -35,7 +35,7 @@ class PageTemplate extends React.Component<Props> {
 
     return (
       <StPageTemplate>
-        <StHeader>{pageHeader}</StHeader>
+        {pageHeader && <StHeader>{pageHeader}</StHeader>}
         <StMain>{children}</StMain>
       </StPageTemplate>
     );
