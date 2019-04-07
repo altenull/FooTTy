@@ -6,6 +6,7 @@ import {
   GetAllTeamsInLeaguePayload,
   GetLeagueDetailsPayload,
   GetLeagueSeasonsPayload,
+  GetNextEventsPayload,
 } from '../../services/models/foottyAPI-leagure.service.model';
 import { FoottyAPIActions, LeagueActions } from '../../store/actionCreators';
 import PageTemplate from '../base/components/PageTemplate';
@@ -38,6 +39,7 @@ class LeaguePage extends React.Component<Props> {
     FoottyAPIActions.getLeagueDetails({ leagueId } as GetLeagueDetailsPayload);
     FoottyAPIActions.getAllTeamsInLeague({ league } as GetAllTeamsInLeaguePayload);
     FoottyAPIActions.getLeagueSeasons({ leagueId } as GetLeagueSeasonsPayload);
+    FoottyAPIActions.getNextEvents({ leagueId } as GetNextEventsPayload);
   };
 
   render() {

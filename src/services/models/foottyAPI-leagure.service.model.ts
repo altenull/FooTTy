@@ -7,3 +7,6 @@ export interface GetAllTeamsInLeaguePayload {
 export interface GetLeagueSeasonsPayload {
   leagueId: string;
 }
+export interface GetNextEventsPayload {
+  leagueId: string;
+}

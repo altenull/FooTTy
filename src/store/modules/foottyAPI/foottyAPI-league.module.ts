@@ -1,13 +1,16 @@
 import produce from 'immer';
 import { createAction, handleActions } from 'redux-actions';
 
-import sagaHelper from '../../helpers/saga/saga.helper';
+import sagaStoreHelper from '../../helpers/saga/saga.store.helper';
 import { FoottyAPILeagueState } from '../../models/foottyAPI/foottyAPI-league.store.model';
 
 const RESET_FOOTTY_API_LEAGUE = '@@foottyAPI-league/RESET_FOOTTY_API_LEAGUE';
-export const GET_LEAGUE_DETAILS = sagaHelper.createAsyncActionsType('@@foottyAPI-league/GET_LEAGUE_DETAILS');
-export const GET_ALL_TEAMS_IN_LEAGUE = sagaHelper.createAsyncActionsType('@@foottyAPI-league/GET_ALL_TEAMS_IN_LEAGUE');
-export const GET_LEAGUE_SEASONS = sagaHelper.createAsyncActionsType('@@foottyAPI-league/GET_LEAGUE_SEASONS');
+export const GET_LEAGUE_DETAILS = sagaStoreHelper.createAsyncActionsType('@@foottyAPI-league/GET_LEAGUE_DETAILS');
+export const GET_ALL_TEAMS_IN_LEAGUE = sagaStoreHelper.createAsyncActionsType(
+  '@@foottyAPI-league/GET_ALL_TEAMS_IN_LEAGUE'
+);
+export const GET_LEAGUE_SEASONS = sagaStoreHelper.createAsyncActionsType('@@foottyAPI-league/GET_LEAGUE_SEASONS');
+export const GET_NEXT_EVENTS = sagaStoreHelper.createAsyncActionsType('@@foottyAPI-league/GET_NEXT_EVENTS');
 
 export const actionCreators = {
   resetFoottyAPILeague: createAction(RESET_FOOTTY_API_LEAGUE),
@@ -23,6 +26,10 @@ export const actionCreators = {
   getLeagueSeasonsRequest: createAction(GET_LEAGUE_SEASONS.REQUEST),
   getLeagueSeasonsComplete: createAction(GET_LEAGUE_SEASONS.SUCCESS),
   getLeagueSeasonsFail: createAction(GET_LEAGUE_SEASONS.FAIL),
+  getNextEvents: createAction(GET_NEXT_EVENTS.INDEX),
+  getNextEventsRequest: createAction(GET_NEXT_EVENTS.REQUEST),
+  getNextEventsComplete: createAction(GET_NEXT_EVENTS.SUCCESS),
+  getNextEventsFail: createAction(GET_NEXT_EVENTS.FAIL),
 };
 
 export const initialState: FoottyAPILeagueState = {
@@ -43,6 +50,12 @@ export const initialState: FoottyAPILeagueState = {
     isGetSeasonsLoading: false,
     isGetSeasonsLoaded: false,
     getSeasonsError: null,
+  },
+  nextEvents: null,
+  nextEventsAPIStatus: {
+    isGetNextEventsLoading: false,
+    isGetNextEventsLoaded: false,
+    getNextEventsError: null,
   },
 };
 
@@ -122,6 +135,31 @@ export const reducer = handleActions(
           draft.seasonsAPIStatus.getSeasonsError = action.payload as any;
         }
         draft.seasonsAPIStatus.isGetSeasonsLoading = false;
+      });
+    },
+    [GET_NEXT_EVENTS.REQUEST]: (state: FoottyAPILeagueState) => {
+      return produce(state, (draft) => {
+        draft.nextEvents = null;
+        draft.nextEventsAPIStatus.isGetNextEventsLoading = true;
+        draft.nextEventsAPIStatus.isGetNextEventsLoaded = false;
+        draft.nextEventsAPIStatus.getNextEventsError = null;
+      });
+    },
+    [GET_NEXT_EVENTS.SUCCESS]: (state: FoottyAPILeagueState, action) => {
+      return produce(state, (draft) => {
+        if (action.payload != null) {
+          draft.nextEvents = action.payload as any;
+        }
+        draft.nextEventsAPIStatus.isGetNextEventsLoading = false;
+        draft.nextEventsAPIStatus.isGetNextEventsLoaded = true;
+      });
+    },
+    [GET_NEXT_EVENTS.FAIL]: (state: FoottyAPILeagueState, action) => {
+      return produce(state, (draft) => {
+        if (action.payload != null) {
+          draft.nextEventsAPIStatus.getNextEventsError = action.payload as any;
+        }
+        draft.nextEventsAPIStatus.isGetNextEventsLoading = false;
       });
     },
   },

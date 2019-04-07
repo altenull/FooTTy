@@ -2,6 +2,7 @@ import {
   GetAllTeamsInLeaguePayload,
   GetLeagueDetailsPayload,
   GetLeagueSeasonsPayload,
+  GetNextEventsPayload,
 } from '../../../services/models/foottyAPI-leagure.service.model';
 import { ActionType } from '../saga/saga.model';
 import { SocialUrls } from '../shared/shared.model';
@@ -25,6 +26,12 @@ export interface FoottyAPILeagueState {
     isGetSeasonsLoaded: boolean;
     getSeasonsError: string | null;
   };
+  nextEvents: { [eventId: string]: ObjectizedEventInLeague } | null;
+  nextEventsAPIStatus: {
+    isGetNextEventsLoading: boolean;
+    isGetNextEventsLoaded: boolean;
+    getNextEventsError: string | null;
+  };
 }
 
 // Redux-Saga
@@ -36,6 +43,9 @@ export interface GetAllTeamsInLeagueAction extends ActionType {
 }
 export interface GetLeagueSeasonsAction extends ActionType {
   payload: GetLeagueSeasonsPayload;
+}
+export interface GetNextEventsAction extends ActionType {
+  payload: GetNextEventsPayload;
 }
 
 export interface LeagueDetails {

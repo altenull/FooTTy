@@ -1,9 +1,12 @@
 import {
+  EventInLeague,
   GetAllTeamsInLeagueResponse,
   GetLeagueDetailsResponse,
   GetLeagueSeasonsResponse,
+  GetNextEventsResponse,
   LeagueDetails,
   LeagueSeason,
+  ObjectizedEventInLeague,
   ObjectizedLeagueDetails,
   ObjectizedTeamInLeague,
   TeamInLeague,
@@ -67,13 +70,39 @@ const getAllTeamsInLeague = (
 };
 
 const getLeagueSeasons = (getLeagueSeasonsResponse: GetLeagueSeasonsResponse): string[] => {
-  const leagueSeasons = getLeagueSeasonsResponse.seasons.reduce((acc: string[], season: LeagueSeason) => {
+  const leagueSeasons: string[] = getLeagueSeasonsResponse.seasons.reduce((acc: string[], season: LeagueSeason) => {
     return [...acc, season.strSeason];
   }, []);
 
   return leagueSeasons.reverse();
 };
 
-const foottyAPIHelper = { getLeagueDetails, getAllTeamsInLeague, getLeagueSeasons };
+const getNextEvents = (
+  getNextEventsResponse: GetNextEventsResponse
+): { [eventId: string]: ObjectizedEventInLeague } => {
+  const nextEvents: { [eventId: string]: ObjectizedEventInLeague } = getNextEventsResponse.events.reduce(
+    (acc: { [eventId: string]: ObjectizedEventInLeague }, event: EventInLeague) => {
+      return {
+        ...acc,
+        [event.idEvent]: {
+          strEvent: event.strEvent,
+          strHomeTeam: event.strHomeTeam,
+          strAwayTeam: event.strAwayTeam,
+          intRound: event.intRound,
+          dateEvent: event.dateEvent,
+          strDate: event.strDate,
+          strTime: event.strTime,
+          idHomeTeam: event.idHomeTeam,
+          idAwayTeam: event.idAwayTeam,
+        },
+      };
+    },
+    {}
+  );
 
-export default foottyAPIHelper;
+  return nextEvents;
+};
+
+const foottyAPIStoreHelper = { getLeagueDetails, getAllTeamsInLeague, getLeagueSeasons, getNextEvents };
+
+export default foottyAPIStoreHelper;

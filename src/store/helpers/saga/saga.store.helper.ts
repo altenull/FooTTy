@@ -24,6 +24,6 @@ const createAsyncActions = (asyncActionType: AsyncActionsType) => {
   return asyncAction;
 };
 
-const sagaHelper = { createAsyncActionsType, createSagaAction, createAsyncActions };
+const sagaStoreHelper = { createAsyncActionsType, createSagaAction, createAsyncActions };
 
-export default sagaHelper;
+export default sagaStoreHelper;
