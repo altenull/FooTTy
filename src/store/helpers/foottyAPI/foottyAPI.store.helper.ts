@@ -3,11 +3,14 @@ import {
   GetAllTeamsInLeagueResponse,
   GetLeagueDetailsResponse,
   GetLeagueSeasonsResponse,
+  GetLeagueTableResponse,
   GetNextEventsResponse,
   LeagueDetails,
   LeagueSeason,
+  LeagueTable,
   ObjectizedEventInLeague,
   ObjectizedLeagueDetails,
+  ObjectizedLeagueTable,
   ObjectizedTeamInLeague,
   TeamInLeague,
 } from '../../models/foottyAPI/foottyAPI-league.store.model';
@@ -103,6 +106,30 @@ const getNextEvents = (
   return nextEvents;
 };
 
-const foottyAPIStoreHelper = { getLeagueDetails, getAllTeamsInLeague, getLeagueSeasons, getNextEvents };
+const getLeagueTable = (
+  getLeagueTableResponse: GetLeagueTableResponse
+): {
+  [teamId: string]: ObjectizedLeagueTable;
+} => {
+  const leagueTable: {
+    [teamId: string]: ObjectizedLeagueTable;
+  } = getLeagueTableResponse.table.reduce(
+    (acc: { [teamId: string]: ObjectizedLeagueTable }, table: LeagueTable, index: number) => {
+      const { teamid: extractedValue, ...tableEntity } = table;
+      return {
+        ...acc,
+        [table.teamid]: {
+          ...tableEntity,
+          rank: index,
+        },
+      };
+    },
+    {}
+  );
+
+  return leagueTable;
+};
+
+const foottyAPIStoreHelper = { getLeagueDetails, getAllTeamsInLeague, getLeagueSeasons, getNextEvents, getLeagueTable };
 
 export default foottyAPIStoreHelper;

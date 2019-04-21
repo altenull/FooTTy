@@ -10,3 +10,7 @@ export interface GetLeagueSeasonsPayload {
 export interface GetNextEventsPayload {
   leagueId: string;
 }
+export interface GetLeagueTablePayload {
+  leagueId: string;
+  selectedSeason: string;
+}

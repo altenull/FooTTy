@@ -10,10 +10,13 @@ import {
   GetLeagueDetailsResponse,
   GetLeagueSeasonsAction,
   GetLeagueSeasonsResponse,
+  GetLeagueTableAction,
+  GetLeagueTableResponse,
   GetNextEventsAction,
   GetNextEventsResponse,
   ObjectizedEventInLeague,
   ObjectizedLeagueDetails,
+  ObjectizedLeagueTable,
   ObjectizedTeamInLeague,
 } from '../../models/foottyAPI/foottyAPI-league.store.model';
 import { SelectSeasonPayload } from '../../models/league/league.store.model';
@@ -21,6 +24,7 @@ import {
   GET_ALL_TEAMS_IN_LEAGUE,
   GET_LEAGUE_DETAILS,
   GET_LEAGUE_SEASONS,
+  GET_LEAGUE_TABLE,
   GET_NEXT_EVENTS,
 } from '../../modules/foottyAPI/foottyAPI-league.module';
 import { SELECT_SEASON } from '../../modules/league/league.module';
@@ -30,6 +34,7 @@ export const getLeagueDetailsAsyncActionCreator = sagaStoreHelper.createAsyncAct
 export const getAllTeamsAsyncActionCreator = sagaStoreHelper.createAsyncActions(GET_ALL_TEAMS_IN_LEAGUE);
 export const getLeagueSeasonsAsyncActionCreator = sagaStoreHelper.createAsyncActions(GET_LEAGUE_SEASONS);
 export const getNextEventsAsyncActionCreator = sagaStoreHelper.createAsyncActions(GET_NEXT_EVENTS);
+export const getLeagueTableAsyncActionCreator = sagaStoreHelper.createAsyncActions(GET_LEAGUE_TABLE);
 
 function* getLeagueDetails(action: GetLeagueDetailsAction) {
   yield put(getLeagueDetailsAsyncActionCreator.request());
@@ -102,11 +107,28 @@ export function* getNextEvents(action: GetNextEventsAction) {
   }
 }
 
+export function* getLeagueTable(action: GetLeagueTableAction) {
+  yield put(getLeagueTableAsyncActionCreator.request());
+
+  const { response, error } = yield call(() => foottyAPIService.getLeagueTable(action.payload));
+
+  if (response) {
+    const leagueTable: { [teamId: string]: ObjectizedLeagueTable } = foottyAPIStoreHelper.getLeagueTable(
+      response.data as GetLeagueTableResponse
+    );
+
+    yield put(getLeagueTableAsyncActionCreator.success(leagueTable));
+  } else {
+    yield put(getLeagueTableAsyncActionCreator.fail(error.toString()));
+  }
+}
+
 export default function* foottyAPILeagueSaga() {
   yield all([
     takeLatest(GET_LEAGUE_DETAILS.INDEX, getLeagueDetails),
     takeLatest(GET_ALL_TEAMS_IN_LEAGUE.INDEX, getAllTeamsInLeague),
     takeLatest(GET_LEAGUE_SEASONS.INDEX, getLeagueSeasons),
     takeLatest(GET_NEXT_EVENTS.INDEX, getNextEvents),
+    takeLatest(GET_LEAGUE_TABLE.INDEX, getLeagueTable),
   ]);
 }

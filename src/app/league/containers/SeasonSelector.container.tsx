@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import { LeagueActions } from '../../../store/actionCreators';
+import { GetLeagueTablePayload } from '../../../services/models/foottyAPI-leagure.service.model';
+import { FoottyAPIActions, LeagueActions } from '../../../store/actionCreators';
 import { SelectSeasonPayload } from '../../../store/models/league/league.store.model';
 import { RootState } from '../../../store/modules';
 import SeasonSelector from '../components/SeasonSelector';
@@ -30,15 +31,14 @@ class SeasonSelectorContainer extends React.Component<Props, States> {
   }
 
   componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<States>, snapshot?: any): void {
-    // const { leagueId, selectedSeason } = this.props;
-    const { selectedSeason } = this.props;
+    const { leagueId, selectedSeason } = this.props;
 
     if (!!selectedSeason && prevProps.selectedSeason !== selectedSeason) {
-      // const getLeagueTablePayload: GetLeagueTablePayload = {
-      //   leagueId,
-      //   selectedSeason,
-      // };
-      // FoottyAPIActions.getLeagueTable(getLeagueTablePayload);
+      const getLeagueTablePayload: GetLeagueTablePayload = {
+        leagueId,
+        selectedSeason,
+      };
+      FoottyAPIActions.getLeagueTable(getLeagueTablePayload);
     }
   }
 

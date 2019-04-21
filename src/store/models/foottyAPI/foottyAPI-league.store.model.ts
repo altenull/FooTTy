@@ -2,6 +2,7 @@ import {
   GetAllTeamsInLeaguePayload,
   GetLeagueDetailsPayload,
   GetLeagueSeasonsPayload,
+  GetLeagueTablePayload,
   GetNextEventsPayload,
 } from '../../../services/models/foottyAPI-leagure.service.model';
 import { ActionType } from '../saga/saga.model';
@@ -32,6 +33,12 @@ export interface FoottyAPILeagueState {
     isGetNextEventsLoaded: boolean;
     getNextEventsError: string | null;
   };
+  leagueTable: { [teamId: string]: ObjectizedLeagueTable } | null;
+  leagueTableAPIStatus: {
+    isGetLeagueTableLoading: boolean;
+    isGetLeagueTableLoaded: boolean;
+    getLeagueTableError: string | null;
+  };
 }
 
 // Redux-Saga
@@ -46,6 +53,9 @@ export interface GetLeagueSeasonsAction extends ActionType {
 }
 export interface GetNextEventsAction extends ActionType {
   payload: GetNextEventsPayload;
+}
+export interface GetLeagueTableAction extends ActionType {
+  payload: GetLeagueTablePayload;
 }
 
 export interface LeagueDetails {
@@ -269,4 +279,32 @@ export interface ObjectizedEventInLeague {
 }
 export interface GetNextEventsResponse {
   events: EventInLeague[];
+}
+
+export interface LeagueTable {
+  name: string;
+  teamid: string;
+  played: number;
+  goalsfor: number;
+  goalsagainst: number;
+  goalsdifference: number;
+  win: number;
+  draw: number;
+  loss: number;
+  total: number;
+}
+export interface ObjectizedLeagueTable {
+  name: string;
+  rank: number;
+  played: number;
+  goalsfor: number;
+  goalsagainst: number;
+  goalsdifference: number;
+  win: number;
+  draw: number;
+  loss: number;
+  total: number;
+}
+export interface GetLeagueTableResponse {
+  table: LeagueTable[];
 }

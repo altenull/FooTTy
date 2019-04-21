@@ -3,6 +3,7 @@ import {
   GetAllTeamsInLeaguePayload,
   GetLeagueDetailsPayload,
   GetLeagueSeasonsPayload,
+  GetLeagueTablePayload,
   GetNextEventsPayload,
 } from '../models/foottyAPI-leagure.service.model';
 
@@ -29,6 +30,14 @@ class FoottyAPILeagueService {
 
   getNextEvents = (payload: GetNextEventsPayload) => {
     const url: string = `${REACT_APP_PRIVATE_FOOTTY_END_POINT}/eventsnextleague.php?id=${payload.leagueId}`;
+
+    return foottyAPIServiceHelper.getRequestHandler(url);
+  };
+
+  getLeagueTable = (payload: GetLeagueTablePayload) => {
+    const url: string = `${REACT_APP_PRIVATE_FOOTTY_END_POINT}/lookuptable.php?l=${payload.leagueId}&s=${
+      payload.selectedSeason
+    }`;
 
     return foottyAPIServiceHelper.getRequestHandler(url);
   };
