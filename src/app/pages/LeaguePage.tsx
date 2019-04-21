@@ -11,6 +11,7 @@ import {
 import { FoottyAPIActions, LeagueActions } from '../../store/actionCreators';
 import PageTemplate from '../base/components/PageTemplate';
 import TwoColumnTemplate from '../base/components/TwoColumnTemplate';
+import SeasonSelectorContainer from '../league/containers/SeasonSelector.container';
 import ParallelogramHeader from '../ui/components/ParallelogramHeader';
 
 interface Props extends RouteComponentProps<any> {
@@ -51,7 +52,7 @@ class LeaguePage extends React.Component<Props> {
     const pageHeaderCopy: string = leagueCollection[this.currentLeagueId].displayName;
     const pageHeader: React.ReactNode = <ParallelogramHeader badge={pageHeaderBadge} copy={pageHeaderCopy} />;
 
-    const left: React.ReactNode = <div>Left</div>;
+    const left: React.ReactNode = <SeasonSelectorContainer leagueId={this.currentLeagueId} />;
     const right: React.ReactNode = <div>Right</div>;
 
     return (

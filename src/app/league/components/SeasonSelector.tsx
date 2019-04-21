@@ -34,7 +34,7 @@ const StSeasonSelectorUl = styled.ul`
   list-style-type: none;
   margin: 0;
   padding: 0;
-  width: ${(props: StSeasonSelectorUlProps) => (props.isExpanded ? `${+itemWidth * 3}px` : `${itemWidth}`)};
+  width: ${(props: StSeasonSelectorUlProps) => (props.isExpanded ? '240px' : `${itemWidth}`)};
 `;
 
 const StSeasonSelectorItem = styled.li`
@@ -53,6 +53,8 @@ const StSeasonSelectorItem = styled.li`
 class SeasonSelector extends React.Component<Props> {
   render() {
     const { isExpanded, selectedSeason, selectableSeasons, onExpandability, onSelectSeason } = this.props;
+
+    // TODO: Handle empty selectedSeason by adding loading animation or others..?
 
     const displayedSeason: React.ReactNode = !isExpanded ? (
       <StSeasonSelectorItem onClick={() => onExpandability()}>{selectedSeason}</StSeasonSelectorItem>

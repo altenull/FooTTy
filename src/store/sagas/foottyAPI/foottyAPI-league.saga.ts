@@ -16,13 +16,16 @@ import {
   ObjectizedLeagueDetails,
   ObjectizedTeamInLeague,
 } from '../../models/foottyAPI/foottyAPI-league.store.model';
+import { SelectSeasonPayload } from '../../models/league/league.store.model';
 import {
   GET_ALL_TEAMS_IN_LEAGUE,
   GET_LEAGUE_DETAILS,
   GET_LEAGUE_SEASONS,
   GET_NEXT_EVENTS,
 } from '../../modules/foottyAPI/foottyAPI-league.module';
+import { SELECT_SEASON } from '../../modules/league/league.module';
 
+export const selectSeasonAcionCreator = sagaStoreHelper.createSagaAction(SELECT_SEASON);
 export const getLeagueDetailsAsyncActionCreator = sagaStoreHelper.createAsyncActions(GET_LEAGUE_DETAILS);
 export const getAllTeamsAsyncActionCreator = sagaStoreHelper.createAsyncActions(GET_ALL_TEAMS_IN_LEAGUE);
 export const getLeagueSeasonsAsyncActionCreator = sagaStoreHelper.createAsyncActions(GET_LEAGUE_SEASONS);
@@ -69,13 +72,13 @@ export function* getLeagueSeasons(action: GetLeagueSeasonsAction) {
     const leagueSeasons: string[] = foottyAPIStoreHelper.getLeagueSeasons(response.data as GetLeagueSeasonsResponse);
 
     // TODO: Research how to use some actions in other saga
-    // if (sortedSeasons.length > 0) {
-    //   const setSelectedSeasonPayload: SetSelectedSeasonPayload = {
-    //     selectedSeason: sortedSeasons[0],
-    //   };
+    if (leagueSeasons.length > 0) {
+      const selectedSeasonPayload: SelectSeasonPayload = {
+        selectedSeason: leagueSeasons[0],
+      };
 
-    //   yield put(setSelectedSeasonAcionCreator(setSelectedSeasonPayload));
-    // }
+      yield put(selectSeasonAcionCreator(selectedSeasonPayload));
+    }
 
     yield put(getLeagueSeasonsAsyncActionCreator.success(leagueSeasons));
   } else {
