@@ -20,7 +20,7 @@ const StLeagueTableRow = styled.tr`
 `;
 
 const StLeagueTableTd = styled.td`
-  text-align: 'center';
+  text-align: center;
 `;
 
 class LeagueTableRow extends React.Component<Props> {
