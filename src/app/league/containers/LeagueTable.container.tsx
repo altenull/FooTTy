@@ -22,6 +22,16 @@ class LeagueTableContainer extends React.Component<Props> {
     window.location.href = `${window.location.href}/${teamId}`;
   };
 
+  sortTeamIds = (leagueTable: { [teamId: string]: ObjectizedLeagueTable }) => {
+    return Object.keys(leagueTable).sort((prevTeamId: string, nextTeamId: string) => {
+      return leagueTable[prevTeamId].rank < leagueTable[nextTeamId].rank
+        ? -1
+        : leagueTable[prevTeamId].rank > leagueTable[nextTeamId].rank
+        ? 1
+        : 0;
+    });
+  };
+
   render() {
     const { leagueTable, allTeamsInLeague, nextEvents } = this.props;
     const { handleSelectTeam } = this;
@@ -31,14 +41,7 @@ class LeagueTableContainer extends React.Component<Props> {
       return <div style={{ color: 'white' }}>Loading...</div>;
     }
 
-    const orderedTeamIds: string[] = Object.keys(leagueTable).sort((prevTeamId: string, nextTeamId: string) => {
-      return leagueTable[prevTeamId].rank < leagueTable[nextTeamId].rank
-        ? -1
-        : leagueTable[prevTeamId].rank > leagueTable[nextTeamId].rank
-        ? 1
-        : 0;
-    });
-
+    const orderedTeamIds: string[] = this.sortTeamIds(leagueTable!);
     const orderedNextEvents: ObjectizedEventInLeague[] = Object.values(nextEvents);
 
     const tableRows: React.ReactNode = orderedTeamIds.map((teamId: string, index: number) => {
