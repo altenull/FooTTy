@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 
 import App from './app/App';
 import store from './store';
 
-class Root extends React.Component {
+class Root extends Component {
   render() {
     return (
       <Provider store={store}>

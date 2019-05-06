@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const StTwoColumnTemplate = styled.div`
@@ -17,11 +17,11 @@ const StRightSection = styled.section`
 `;
 
 interface Props {
-  left: React.ReactNode;
-  right: React.ReactNode;
+  left: ReactNode;
+  right: ReactNode;
 }
 
-class TwoColumnTemplate extends React.Component<Props> {
+class TwoColumnTemplate extends Component<Props> {
   render() {
     const { left, right } = this.props;
 

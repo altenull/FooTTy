@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -22,7 +22,7 @@ const StParallelogramHeaderBadge = styled.img`
   margin-right: 8px;
 `;
 
-class ParallelogramHeader extends React.Component<Props> {
+class ParallelogramHeader extends Component<Props> {
   render() {
     const { badge, copy } = this.props;
 

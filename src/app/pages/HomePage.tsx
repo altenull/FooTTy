@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component, ReactNode } from 'react';
 
 import { withLocale } from '../../contexts/locale.context';
 import PageTemplate from '../base/components/PageTemplate';
@@ -10,7 +10,7 @@ interface Props {
   localizedContents: any;
 }
 
-class HomePage extends React.Component<Props> {
+class HomePage extends Component<Props> {
   render() {
     const { localizedContents } = this.props;
     const leagueCollection = localizedContents.league.leagueCollection;
@@ -30,8 +30,8 @@ class HomePage extends React.Component<Props> {
       );
     });
 
-    const left: React.ReactNode = <RevealText />;
-    const right: React.ReactNode = <div>{leagueSelectors}</div>;
+    const left: ReactNode = <RevealText />;
+    const right: ReactNode = <div>{leagueSelectors}</div>;
 
     return (
       <PageTemplate>

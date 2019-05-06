@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component, ReactNode } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 
 import { withLocale } from '../../contexts/locale.context';
@@ -19,7 +19,7 @@ interface Props extends RouteComponentProps<any> {
   localizedContents: any;
 }
 
-class LeaguePage extends React.Component<Props> {
+class LeaguePage extends Component<Props> {
   currentLeagueId: string = '';
 
   constructor(props: any) {
@@ -51,10 +51,10 @@ class LeaguePage extends React.Component<Props> {
 
     const pageHeaderBadge: string = leagueCollection[this.currentLeagueId].badge;
     const pageHeaderCopy: string = leagueCollection[this.currentLeagueId].displayName;
-    const pageHeader: React.ReactNode = <ParallelogramHeader badge={pageHeaderBadge} copy={pageHeaderCopy} />;
+    const pageHeader: ReactNode = <ParallelogramHeader badge={pageHeaderBadge} copy={pageHeaderCopy} />;
 
-    const left: React.ReactNode = <SeasonSelectorContainer leagueId={this.currentLeagueId} />;
-    const right: React.ReactNode = <LeagueTableContainer />;
+    const left: ReactNode = <SeasonSelectorContainer leagueId={this.currentLeagueId} />;
+    const right: ReactNode = <LeagueTableContainer />;
 
     return (
       <PageTemplate pageHeader={pageHeader}>

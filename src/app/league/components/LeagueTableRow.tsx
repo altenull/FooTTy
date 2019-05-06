@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import { ObjectizedLeagueTable } from '../../../store/models/foottyAPI/foottyAPI-league.store.model';
@@ -23,7 +23,7 @@ const StLeagueTableTd = styled.td`
   text-align: center;
 `;
 
-class LeagueTableRow extends React.Component<Props> {
+class LeagueTableRow extends Component<Props> {
   render() {
     const { teamId, rank, badgeUrl, data, nextEvent, onSelectTeam } = this.props;
 
@@ -34,7 +34,7 @@ class LeagueTableRow extends React.Component<Props> {
       <StLeagueTableRow onClick={() => onSelectTeam(teamId)}>
         <th>{rank}</th>
         <StLeagueTableTd style={{ textAlign: 'left' }}>
-          <span>{badgeUrl ? <img src={badgeUrl} width={'36px'} /> : 'No image'}</span> {data.name}
+          <span>{badgeUrl ? <img src={badgeUrl} width={'36px'} alt={data.name} /> : 'No image'}</span> {data.name}
         </StLeagueTableTd>
         <StLeagueTableTd>{data.played}</StLeagueTableTd>
         <StLeagueTableTd>{data.win}</StLeagueTableTd>
@@ -45,7 +45,11 @@ class LeagueTableRow extends React.Component<Props> {
         <StLeagueTableTd>{handledGoalsDifference}</StLeagueTableTd>
         <StLeagueTableTd>
           <span>
-            {nextEvent != null && nextEvent.badgeUrl ? <img src={nextEvent.badgeUrl} width={'36px'} /> : 'No image'}
+            {nextEvent != null && nextEvent.badgeUrl ? (
+              <img src={nextEvent.badgeUrl} width={'36px'} alt={nextEvent.name} />
+            ) : (
+              'No image'
+            )}
           </span>
         </StLeagueTableTd>
         <StLeagueTableTd>{data.total}</StLeagueTableTd>

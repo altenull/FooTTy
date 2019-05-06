@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const StMainTitle = styled.h1`
@@ -17,7 +17,7 @@ const StSubTitle = styled.h3`
   padding: 0;
 `;
 
-class RevealText extends React.Component {
+class RevealText extends Component {
   render() {
     return (
       <div>

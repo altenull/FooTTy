@@ -1,5 +1,5 @@
 // TODO: Revise styles
-import * as React from 'react';
+import React, { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const itemWidth: string = '80px';
@@ -50,13 +50,13 @@ const StSeasonSelectorItem = styled.li`
   }
 `;
 
-class SeasonSelector extends React.Component<Props> {
+class SeasonSelector extends Component<Props> {
   render() {
     const { isExpanded, selectedSeason, selectableSeasons, onExpandability, onSelectSeason } = this.props;
 
     // TODO: Handle empty selectedSeason by adding loading animation or others..?
 
-    const displayedSeason: React.ReactNode = !isExpanded ? (
+    const displayedSeason: ReactNode = !isExpanded ? (
       <StSeasonSelectorItem onClick={() => onExpandability()}>{selectedSeason}</StSeasonSelectorItem>
     ) : (
       selectableSeasons.map((selectableSeason: string) => {

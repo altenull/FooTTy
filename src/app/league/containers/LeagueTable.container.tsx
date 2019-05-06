@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component, ReactNode } from 'react';
 import { connect } from 'react-redux';
 
 import {
@@ -17,7 +17,7 @@ interface Props {
   nextEvents: { [eventId: string]: ObjectizedEventInLeague } | null;
 }
 
-class LeagueTableContainer extends React.Component<Props> {
+class LeagueTableContainer extends Component<Props> {
   handleSelectTeam = (teamId: string): void => {
     window.location.href = `${window.location.href}/${teamId}`;
   };
@@ -44,7 +44,7 @@ class LeagueTableContainer extends React.Component<Props> {
     const orderedTeamIds: string[] = this.sortTeamIds(leagueTable!);
     const orderedNextEvents: ObjectizedEventInLeague[] = Object.values(nextEvents);
 
-    const tableRows: React.ReactNode = orderedTeamIds.map((teamId: string, index: number) => {
+    const tableRows: ReactNode = orderedTeamIds.map((teamId: string, index: number) => {
       let isTeamBelongToHomeInNextEvent: boolean = false;
 
       const foundNextEvent: ObjectizedEventInLeague | undefined = orderedNextEvents.find(

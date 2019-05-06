@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 import backgroundImage from '../../../assets/images/background.png';
@@ -25,11 +25,11 @@ const StMain = styled.main`
 `;
 
 interface Props {
-  pageHeader?: React.ReactNode;
-  children: React.ReactNode;
+  pageHeader?: ReactNode;
+  children: ReactNode;
 }
 
-class PageTemplate extends React.Component<Props> {
+class PageTemplate extends Component<Props> {
   render() {
     const { pageHeader, children } = this.props;
 

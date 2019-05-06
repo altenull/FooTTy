@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { GetLeagueTablePayload } from '../../../services/models/foottyAPI-leagure.service.model';
@@ -17,7 +17,7 @@ interface States {
   isExpanded: boolean;
 }
 
-class SeasonSelectorContainer extends React.Component<Props, States> {
+class SeasonSelectorContainer extends Component<Props, States> {
   state = {
     isExpanded: false,
   };

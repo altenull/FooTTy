@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { withLocale } from '../../../contexts/locale.context';
 
 interface Props {
   localizedContents: any;
-  tableRows: React.ReactNode;
+  tableRows: ReactNode;
 }
 
 const StLeagueTable = styled.table`
@@ -15,7 +15,7 @@ const StLeagueTable = styled.table`
   margin: 80px 0;
 `;
 
-class LeagueTable extends React.Component<Props> {
+class LeagueTable extends Component<Props> {
   render() {
     const { localizedContents, tableRows } = this.props;
     const leagueTableContents = localizedContents.league.leagueTable;

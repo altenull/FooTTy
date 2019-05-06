@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -43,7 +43,7 @@ const StLeagueSelector = styled(Link)`
   }
 `;
 
-class LeagueSelector extends React.Component<Props> {
+class LeagueSelector extends Component<Props> {
   render() {
     const { linkTo, badgeGrey, displayName, fullName } = this.props;
     // const { linkTo, alias, badgeGrey, displayName, fullName } = this.props;

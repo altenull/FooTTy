@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
@@ -26,10 +26,10 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const HomePage = React.lazy(() => import('./pages/HomePage'));
-const LeaguePage = React.lazy(() => import('./pages/LeaguePage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const LeaguePage = lazy(() => import('./pages/LeaguePage'));
 
-class App extends React.Component {
+class App extends Component {
   hl: string | null = null;
 
   getHostLanguage = (locationSearch: string): string | null => {
@@ -50,12 +50,12 @@ class App extends React.Component {
             <Route
               path={'/'}
               render={() => (
-                <React.Suspense fallback={<div>Loading...</div>}>
-                  <LocaleProvider hl={this.getHostLanguage(location.search)}>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <LocaleProvider hl={this.getHostLanguage(window.location.search)}>
                     <Route path={'/'} component={HomePage} exact={true} />
                     <Route path={'/:league'} component={LeaguePage} exact={true} />
                   </LocaleProvider>
-                </React.Suspense>
+                </Suspense>
               )}
             />
           </Switch>
