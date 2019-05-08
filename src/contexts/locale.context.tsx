@@ -3,14 +3,18 @@ import * as React from 'react';
 import { foottyContents } from '../assets/contents/footty.content';
 
 interface LocaleProviderProps {
-  hl: string | null;
+  hostLanguage: string | null;
   children: React.ReactNode;
 }
 
-const LocaleContext = React.createContext(foottyContents.en);
+const DEFAULT_HOST_LANGUAGE = foottyContents.en;
+const LocaleContext = React.createContext(DEFAULT_HOST_LANGUAGE);
 
 export const LocaleProvider = (props: LocaleProviderProps) => {
-  const value = !!props.hl && !!foottyContents[props.hl] ? foottyContents[props.hl] : foottyContents.en;
+  const value =
+    !!props.hostLanguage && !!foottyContents[props.hostLanguage]
+      ? foottyContents[props.hostLanguage]
+      : DEFAULT_HOST_LANGUAGE;
 
   return <LocaleContext.Provider value={value}>{props.children}</LocaleContext.Provider>;
 };

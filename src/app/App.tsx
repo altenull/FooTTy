@@ -30,16 +30,14 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const LeaguePage = lazy(() => import('./pages/LeaguePage'));
 
 class App extends Component {
-  hl: string | null = null;
+  hostLanguage: string | null = null;
 
   getHostLanguage = (locationSearch: string): string | null => {
     const searchParams = new URLSearchParams(locationSearch);
-    this.hl = this.hl || searchParams.get('hl');
+    this.hostLanguage = this.hostLanguage || searchParams.get('hl');
 
-    return this.hl;
+    return this.hostLanguage;
   };
-
-  componentDidMount() {}
 
   render() {
     return (
@@ -51,7 +49,7 @@ class App extends Component {
               path={'/'}
               render={() => (
                 <Suspense fallback={<div>Loading...</div>}>
-                  <LocaleProvider hl={this.getHostLanguage(window.location.search)}>
+                  <LocaleProvider hostLanguage={this.getHostLanguage(window.location.search)}>
                     <Route path={'/'} component={HomePage} exact={true} />
                     <Route path={'/:league'} component={LeaguePage} exact={true} />
                   </LocaleProvider>
