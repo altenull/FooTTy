@@ -6,6 +6,7 @@ import { GetAllPlayersInTeamPayload } from '../../services/models/foottyAPI-team
 import { FoottyAPIActions } from '../../store/actionCreators';
 import PageTemplate from '../base/components/PageTemplate';
 import TwoColumnTemplate from '../base/components/TwoColumnTemplate';
+import PlayerCollectionContainer from '../team/containers/PlayerCollection.container';
 import ParallelogramHeader from '../ui/components/ParallelogramHeader';
 
 interface Props extends RouteComponentProps<any> {
@@ -31,7 +32,7 @@ class TeamPage extends React.Component<Props> {
     const pageHeader: React.ReactNode = <ParallelogramHeader copy={pageHeaderCopy} />;
 
     // const left: React.ReactNode = <HexagonLabel/>;
-    const right: React.ReactNode = <div>Team Page</div>;
+    const right: React.ReactNode = <PlayerCollectionContainer />;
 
     return (
       <PageTemplate pageHeader={pageHeader}>

@@ -10,7 +10,7 @@ const StOddGridWrapper = styled.div`
   grid-template-columns: repeat(3, 140px);
   grid-gap: 80px;
   margin-bottom: -56px;
-  transform: translateX(-110px);
+  transform: translateX(110px);
 `;
 
 class OddGridWrapper extends Component<Props> {
