@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { GetLeagueTablePayload } from '../../../services/models/foottyAPI-leagure.service.model';
+import { GetLeagueTablePayload } from '../../../services/models/foottyAPI-league.service.model';
 import { FoottyAPIActions, LeagueActions } from '../../../store/actionCreators';
 import { SelectSeasonPayload } from '../../../store/models/league/league.store.model';
 import { RootState } from '../../../store/modules';

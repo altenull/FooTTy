@@ -1,4 +1,8 @@
-import { GetAllPlayersInTeamResponse, ObjectizedPlayerInTeam } from '../../models/foottyAPI/foottyAPI-team.store.model';
+import {
+  GetAllPlayersInTeamResponse,
+  ObjectizedPlayerInTeam,
+  Player,
+} from '../../models/foottyAPI/foottyAPI-team.store.model';
 
 const getPlayers = (
   getAllPlayersInTeamResponse: GetAllPlayersInTeamResponse

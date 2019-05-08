@@ -4,7 +4,7 @@ import {
   GetLeagueSeasonsPayload,
   GetLeagueTablePayload,
   GetNextEventsPayload,
-} from '../../../services/models/foottyAPI-leagure.service.model';
+} from '../../../services/models/foottyAPI-league.service.model';
 import { ActionType } from '../saga/saga.model';
 import { SocialUrls } from '../shared/shared.model';
 

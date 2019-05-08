@@ -5,7 +5,7 @@ import {
   GetLeagueSeasonsPayload,
   GetLeagueTablePayload,
   GetNextEventsPayload,
-} from '../models/foottyAPI-leagure.service.model';
+} from '../models/foottyAPI-league.service.model';
 
 const { REACT_APP_PRIVATE_FOOTTY_END_POINT } = process.env;
 
