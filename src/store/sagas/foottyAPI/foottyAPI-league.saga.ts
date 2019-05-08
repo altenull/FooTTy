@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import foottyAPIService from '../../../services/foottyAPI/foottyAPI.service';
+import FoottyAPIService from '../../../services/foottyAPI/foottyAPI.service';
 import foottyAPIStoreHelper from '../../helpers/foottyAPI/foottyAPI.store.helper';
 import sagaStoreHelper from '../../helpers/saga/saga.store.helper';
 import {
@@ -39,7 +39,7 @@ export const getLeagueTableAsyncActionCreator = sagaStoreHelper.createAsyncActio
 function* getLeagueDetails(action: GetLeagueDetailsAction) {
   yield put(getLeagueDetailsAsyncActionCreator.request());
 
-  const { response, error } = yield call(() => foottyAPIService.getLeagueDetails(action.payload));
+  const { response, error } = yield call(() => FoottyAPIService.getLeagueDetails(action.payload));
 
   if (response) {
     const leagueDetails: { [leagueId: string]: ObjectizedLeagueDetails } = foottyAPIStoreHelper.getLeagueDetails(
@@ -55,7 +55,7 @@ function* getLeagueDetails(action: GetLeagueDetailsAction) {
 export function* getAllTeamsInLeague(action: GetAllTeamsInLeagueAction) {
   yield put(getAllTeamsAsyncActionCreator.request());
 
-  const { response, error } = yield call(() => foottyAPIService.getAllTeamsInLeague(action.payload));
+  const { response, error } = yield call(() => FoottyAPIService.getAllTeamsInLeague(action.payload));
 
   if (response) {
     const allTeamsInLeague: { [teamId: string]: ObjectizedTeamInLeague } = foottyAPIStoreHelper.getAllTeamsInLeague(
@@ -71,7 +71,7 @@ export function* getAllTeamsInLeague(action: GetAllTeamsInLeagueAction) {
 export function* getLeagueSeasons(action: GetLeagueSeasonsAction) {
   yield put(getLeagueSeasonsAsyncActionCreator.request());
 
-  const { response, error } = yield call(() => foottyAPIService.getLeagueSeasons(action.payload));
+  const { response, error } = yield call(() => FoottyAPIService.getLeagueSeasons(action.payload));
 
   if (response) {
     const leagueSeasons: string[] = foottyAPIStoreHelper.getLeagueSeasons(response.data as GetLeagueSeasonsResponse);
@@ -94,7 +94,7 @@ export function* getLeagueSeasons(action: GetLeagueSeasonsAction) {
 export function* getNextEvents(action: GetNextEventsAction) {
   yield put(getNextEventsAsyncActionCreator.request());
 
-  const { response, error } = yield call(() => foottyAPIService.getNextEvents(action.payload));
+  const { response, error } = yield call(() => FoottyAPIService.getNextEvents(action.payload));
 
   if (response) {
     const nextEvents: { [eventId: string]: ObjectizedEventInLeague } = foottyAPIStoreHelper.getNextEvents(
@@ -110,7 +110,7 @@ export function* getNextEvents(action: GetNextEventsAction) {
 export function* getLeagueTable(action: GetLeagueTableAction) {
   yield put(getLeagueTableAsyncActionCreator.request());
 
-  const { response, error } = yield call(() => foottyAPIService.getLeagueTable(action.payload));
+  const { response, error } = yield call(() => FoottyAPIService.getLeagueTable(action.payload));
 
   if (response) {
     const leagueTable: { [teamId: string]: ObjectizedLeagueTable } = foottyAPIStoreHelper.getLeagueTable(

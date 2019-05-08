@@ -7,7 +7,7 @@ import {
   GetLeagueDetailsPayload,
   GetLeagueSeasonsPayload,
   GetNextEventsPayload,
-} from '../../services/models/foottyAPI-leagure.service.model';
+} from '../../services/models/foottyAPI-league.service.model';
 import { FoottyAPIActions, LeagueActions } from '../../store/actionCreators';
 import PageTemplate from '../base/components/PageTemplate';
 import TwoColumnTemplate from '../base/components/TwoColumnTemplate';
