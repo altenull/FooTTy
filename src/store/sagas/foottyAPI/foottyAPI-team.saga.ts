@@ -1,4 +1,4 @@
-import { all, call, put } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import FoottyAPIService from '../../../services/foottyAPI/foottyAPI.service';
 import foottyAPIStoreHelper from '../../helpers/foottyAPI/foottyAPI.store.helper';
@@ -15,7 +15,7 @@ export const getAllPlayersInTeamAsyncActionCreator = sagaStoreHelper.createAsync
 export function* getAllPlayersInTeam(action: GetAllPlayersInTeamAction) {
   yield put(getAllPlayersInTeamAsyncActionCreator.request());
 
-  const { response, error } = yield call(() => FoottyAPIService.getAllTeamsInLeague(action.payload));
+  const { response, error } = yield call(() => FoottyAPIService.getAllPlayersInTeam(action.payload));
 
   if (response) {
     const players: { [playerId: string]: ObjectizedPlayerInTeam } = foottyAPIStoreHelper.getPlayers(
@@ -29,5 +29,5 @@ export function* getAllPlayersInTeam(action: GetAllPlayersInTeamAction) {
 }
 
 export default function* foottyAPITeamSaga() {
-  yield all([GET_ALL_PLAYERS_IN_TEAM.INDEX, getAllPlayersInTeam]);
+  yield all([takeLatest(GET_ALL_PLAYERS_IN_TEAM.INDEX, getAllPlayersInTeam)]);
 }

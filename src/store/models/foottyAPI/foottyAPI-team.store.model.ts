@@ -1,4 +1,5 @@
 import { GetAllPlayersInTeamPayload } from '../../../services/models/foottyAPI-team.service.model';
+import { ActionType } from '../saga/saga.model';
 import { SocialUrls } from '../shared/shared.model';
 
 export interface FoottyAPITeamState {

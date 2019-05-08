@@ -3,6 +3,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 
 import { LocaleProvider } from '../contexts/locale.context';
+import TeamPage from './pages/TeamPage';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -52,6 +53,7 @@ class App extends Component {
                   <LocaleProvider hostLanguage={this.getHostLanguage(window.location.search)}>
                     <Route path={'/'} component={HomePage} exact={true} />
                     <Route path={'/:league'} component={LeaguePage} exact={true} />
+                    <Route path={'/:league/:team'} component={TeamPage} exact={true} />
                   </LocaleProvider>
                 </Suspense>
               )}
