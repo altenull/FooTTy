@@ -1,5 +1,9 @@
 import FoottyAPILeagueService from './foottyAPI-league.service';
+import FoottyAPITeamService from './foottyAPI-team.service';
 
-class FoottyAPIService extends FoottyAPILeagueService {}
+const FoottyAPIService = {
+  ...FoottyAPILeagueService,
+  ...FoottyAPITeamService,
+};
 
-export default new FoottyAPIService();
+export default FoottyAPIService;
