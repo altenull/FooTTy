@@ -34,23 +34,22 @@ const StHexagon = styled.div`
   height: 100%;
   transform: rotate(-60deg);
   background-repeat: no-repeat;
-  background-position: 50%;
   background-size: cover;
   background-image: ${(props: StHexagonProps) => `url(${props.backgroundImage ? props.backgroundImage : 'undefined'})`};
 `;
 
+// TODO: Not fully hover event invoked
 const StHexagonCurtain = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  transform: rotate(-60deg);
   padding-top: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  user-select: none;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.6);
+  transform: rotate(-60deg);
   opacity: 0;
   transition: opacity 0.2s ease-out;
   &:hover {
