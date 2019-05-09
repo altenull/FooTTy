@@ -1,0 +1,24 @@
+import React, { FunctionComponent } from 'react';
+import styled from 'styled-components';
+
+interface Props {
+  width?: number;
+  height?: number;
+  color?: string;
+}
+
+const StIcon = styled.i`
+  display: inline-block;
+`;
+
+const FacebookIcon: FunctionComponent<Props> = ({ width = 36, height = 32, color = '#ffffff' }) => {
+  return (
+    <StIcon>
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 264 512' width={width} height={height}>
+        <path fill={color} d='M215.8 85H264V3.6C255.7 2.5 227.1 0 193.8 0 124.3 0 76.7 42.4 76.7 120.3V192H0v91h76.7v229h94V283h73.6l11.7-91h-85.3v-62.7c0-26.3 7.3-44.3 45.1-44.3z' />
+      </svg>
+    </StIcon>
+  );
+};
+
+export default FacebookIcon;
