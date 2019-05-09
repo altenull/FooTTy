@@ -2,7 +2,11 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router';
 
 import { withLocale } from '../../contexts/locale.context';
-import { GetAllPlayersInTeamPayload } from '../../services/models/foottyAPI-team.service.model';
+import {
+  GetAllPlayersInTeamPayload,
+  GetLast5EventsPayload,
+  GetNext5EventsPayload,
+} from '../../services/models/foottyAPI-team.service.model';
 import { FoottyAPIActions } from '../../store/actionCreators';
 import PageTemplate from '../base/components/PageTemplate';
 import TwoColumnTemplate from '../base/components/TwoColumnTemplate';
@@ -25,6 +29,8 @@ class TeamPage extends React.Component<Props> {
 
   initTeamPage = (teamId: string): void => {
     FoottyAPIActions.getAllPlayersInTeam({ teamId } as GetAllPlayersInTeamPayload);
+    FoottyAPIActions.getNext5Events({ teamId } as GetNext5EventsPayload);
+    FoottyAPIActions.getLast5Events({ teamId } as GetLast5EventsPayload);
   };
 
   render() {
