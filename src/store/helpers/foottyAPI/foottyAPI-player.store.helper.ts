@@ -1,4 +1,5 @@
 import {
+  FormerTeam,
   GetFormerTeamsResponse,
   GetHonoursResponse,
   Honour,

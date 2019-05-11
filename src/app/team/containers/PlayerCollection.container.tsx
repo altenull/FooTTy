@@ -13,9 +13,7 @@ interface Props {
 
 class PlayerCollectionContainer extends React.Component<Props> {
   handleSelectPlayer = (playerId: string) => {
-    // TODO: Request API related with player
-    // FoottyAPIActions.getFormerTeams({ playerId } as GetFormerTeamsPayload);
-    // FoottyAPIActions.getHonours({ playerId } as GetHonoursPayload);
+    window.location.href = `${window.location.href}/${playerId}`;
   };
 
   render() {

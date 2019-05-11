@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle`
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const LeaguePage = lazy(() => import('./pages/LeaguePage'));
+const PlayerPage = lazy(() => import('./pages/PlayerPage'));
 
 class App extends Component {
   hostLanguage: string | null = null;
@@ -54,6 +55,7 @@ class App extends Component {
                     <Route path={'/'} component={HomePage} exact={true} />
                     <Route path={'/:league'} component={LeaguePage} exact={true} />
                     <Route path={'/:league/:team'} component={TeamPage} exact={true} />
+                    <Route path={'/:league/:team/:player'} component={PlayerPage} exact={true} />
                   </LocaleProvider>
                 </Suspense>
               )}

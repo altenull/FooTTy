@@ -27,8 +27,7 @@ class LeagueTableRow extends Component<Props> {
   render() {
     const { teamId, rank, badgeUrl, data, nextEvent, onSelectTeam } = this.props;
 
-    const handledGoalsDifference: string =
-      data.goalsdifference > 0 ? `+${data.goalsdifference}` : `${data.goalsdifference}`;
+    const signedGoalsDifference: string = `${data.goalsdifference > 0 && '+'}${data.goalsdifference}`;
 
     return (
       <StLeagueTableRow onClick={() => onSelectTeam(teamId)}>
@@ -42,7 +41,7 @@ class LeagueTableRow extends Component<Props> {
         <StLeagueTableTd>{data.loss}</StLeagueTableTd>
         <StLeagueTableTd>{data.goalsfor}</StLeagueTableTd>
         <StLeagueTableTd>{data.goalsagainst}</StLeagueTableTd>
-        <StLeagueTableTd>{handledGoalsDifference}</StLeagueTableTd>
+        <StLeagueTableTd>{signedGoalsDifference}</StLeagueTableTd>
         <StLeagueTableTd>
           <span>
             {nextEvent != null && nextEvent.badgeUrl ? (
