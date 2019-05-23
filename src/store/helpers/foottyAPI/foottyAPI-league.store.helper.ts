@@ -83,25 +83,28 @@ const getLeagueSeasons = (getLeagueSeasonsResponse: GetLeagueSeasonsResponse): s
 const getNextEvents = (
   getNextEventsResponse: GetNextEventsResponse
 ): { [eventId: string]: ObjectizedEventInLeague } => {
-  const nextEvents: { [eventId: string]: ObjectizedEventInLeague } = getNextEventsResponse.events.reduce(
-    (acc: { [eventId: string]: ObjectizedEventInLeague }, event: EventInLeague) => {
-      return {
-        ...acc,
-        [event.idEvent]: {
-          strEvent: event.strEvent,
-          strHomeTeam: event.strHomeTeam,
-          strAwayTeam: event.strAwayTeam,
-          intRound: event.intRound,
-          dateEvent: event.dateEvent,
-          strDate: event.strDate,
-          strTime: event.strTime,
-          idHomeTeam: event.idHomeTeam,
-          idAwayTeam: event.idAwayTeam,
-        },
-      };
-    },
-    {}
-  );
+  const nextEvents: { [eventId: string]: ObjectizedEventInLeague } =
+    getNextEventsResponse.events != null
+      ? getNextEventsResponse.events.reduce(
+          (acc: { [eventId: string]: ObjectizedEventInLeague }, event: EventInLeague) => {
+            return {
+              ...acc,
+              [event.idEvent]: {
+                strEvent: event.strEvent,
+                strHomeTeam: event.strHomeTeam,
+                strAwayTeam: event.strAwayTeam,
+                intRound: event.intRound,
+                dateEvent: event.dateEvent,
+                strDate: event.strDate,
+                strTime: event.strTime,
+                idHomeTeam: event.idHomeTeam,
+                idAwayTeam: event.idAwayTeam,
+              },
+            };
+          },
+          {}
+        )
+      : {};
 
   return nextEvents;
 };

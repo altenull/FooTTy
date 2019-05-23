@@ -278,7 +278,7 @@ export interface ObjectizedEventInLeague {
   idAwayTeam: string;
 }
 export interface GetNextEventsResponse {
-  events: EventInLeague[];
+  events: EventInLeague[] | null;
 }
 
 export interface LeagueTable {
