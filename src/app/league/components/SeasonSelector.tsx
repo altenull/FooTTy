@@ -59,13 +59,11 @@ class SeasonSelector extends Component<Props> {
     const displayedSeason: ReactNode = !isExpanded ? (
       <StSeasonSelectorItem onClick={() => onExpandability()}>{selectedSeason}</StSeasonSelectorItem>
     ) : (
-      selectableSeasons.map((selectableSeason: string) => {
-        return (
-          <StSeasonSelectorItem key={selectableSeason} onClick={() => onSelectSeason(selectableSeason)}>
-            {selectableSeason}
-          </StSeasonSelectorItem>
-        );
-      })
+      selectableSeasons.map((selectableSeason: string) => (
+        <StSeasonSelectorItem key={selectableSeason} onClick={() => onSelectSeason(selectableSeason)}>
+          {selectableSeason}
+        </StSeasonSelectorItem>
+      ))
     );
 
     return (
