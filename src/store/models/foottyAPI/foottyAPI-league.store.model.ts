@@ -9,7 +9,7 @@ import { ActionType } from '../saga/saga.model';
 import { SocialUrls } from '../shared/shared.model';
 
 export interface FoottyAPILeagueState {
-  leagueDetails: { [leagueId: string]: ObjectizedLeagueDetails } | null;
+  leagueDetails: ObjectizedLeagueDetails | null;
   leagueDetailsAPIStatus: {
     isGetLeagueDetailsLoading: boolean;
     isGetLeagueDetailsLoaded: boolean;

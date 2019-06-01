@@ -42,7 +42,7 @@ function* getLeagueDetails(action: GetLeagueDetailsAction) {
   const { response, error } = yield call(() => FoottyAPIService.getLeagueDetails(action.payload));
 
   if (response) {
-    const leagueDetails: { [leagueId: string]: ObjectizedLeagueDetails } = foottyAPIStoreHelper.getLeagueDetails(
+    const leagueDetails: ObjectizedLeagueDetails = foottyAPIStoreHelper.getLeagueDetails(
       response.data as GetLeagueDetailsResponse
     );
 
